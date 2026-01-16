@@ -41,17 +41,18 @@ const FullScreenArchive = ({ title, projects, onClose, onProjectClick }) => {
             {/* Grid Content */}
             <div className="px-6 md:px-12 pb-12">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-                    {projects.map((proj) => (
+                    {projects.map((proj, i) => (
                         <div
                             key={proj.id}
-                            className="group cursor-pointer flex flex-col gap-4 touch-manipulation pointer-events-auto"
+                            className="group cursor-pointer flex flex-col gap-4 touch-manipulation pointer-events-auto opacity-0 animate-fade-in-up fill-mode-forwards"
+                            style={{ animationDelay: `${i * 100}ms` }}
                             onClick={() => onProjectClick(proj)}
                         >
-                            <div className="overflow-hidden rounded-2xl relative aspect-video shadow-sm group-hover:shadow-xl transition-all duration-500">
+                            <div className="overflow-hidden rounded-2xl relative aspect-video shadow-sm group-hover:shadow-xl transition-all duration-500 cubic-bezier(0.25, 0.46, 0.45, 0.94)">
                                 <UnifiedImage
                                     src={proj.image}
                                     alt={proj.title}
-                                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                    className="w-full h-full object-cover transform transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) will-change-transform transform-gpu group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                             </div>
@@ -71,3 +72,17 @@ const FullScreenArchive = ({ title, projects, onClose, onProjectClick }) => {
 }
 
 export default FullScreenArchive;
+
+const styles = `
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.innerText = styles;
+document.head.appendChild(styleSheet);

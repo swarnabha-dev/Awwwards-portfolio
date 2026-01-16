@@ -1,5 +1,9 @@
 name = "awwwward-portfolio"
-pages_build_output_dir = "dist"
+# Cloudflare Pages Configuration
+# This key 'pages_build_output_dir' marks this as a Pages project.
+# You MUST use 'wrangler pages deploy' to deploy this.
+pages_build_output_dir = "dist" 
+
 compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
 

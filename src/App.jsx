@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 
 // Import modular components
 import Preloader from './components/ui/Preloader';
 import Monogram from './components/ui/Monogram';
 import FluidCurtain from './components/layout/FluidCurtain';
-import FullScreenArchive from './views/FullScreenArchive';
 import Navbar from './components/layout/Navbar';
 
 // Import modals
@@ -13,8 +12,9 @@ import ResearchDetailModal from './components/modals/ResearchDetailModal';
 import AboutModal from './components/modals/AboutModal';
 import ContactModal from './components/modals/ContactModal';
 
-// Import views
-import HomeView from './views/HomeView';
+// Lazy Load Views
+const HomeView = lazy(() => import('./views/HomeView'));
+const FullScreenArchive = lazy(() => import('./views/FullScreenArchive'));
 
 // Import custom hooks
 import useScroll from './hooks/useScroll';
@@ -88,7 +88,13 @@ export default function App() {
     setCurtainLabel('');
   }, []);
 
-  const handleLoadComplete = useCallback(() => setLoading(false), []);
+  const handleLoadComplete = useCallback(() => {
+    setLoading(false);
+    // Prefetch Archive View after main view is loaded and interactive
+    setTimeout(() => {
+      import('./views/FullScreenArchive');
+    }, 2000);
+  }, []);
   const activeSkill = useTypewriter(SKILLS);
   const isScrolled = scrollY > 50;
 
@@ -103,7 +109,14 @@ export default function App() {
         onRevealed={onCurtainRevealed}
       />
 
-      <div className={`min-h-screen font-sans selection:bg-[#20e0d0] selection:text-white text-[#1d1d1f] overflow-x-hidden transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+      <FluidCurtain
+        isVisible={isTransitioning}
+        label={curtainLabel}
+        onCovered={onCurtainCovered}
+        onRevealed={onCurtainRevealed}
+      />
+
+      <div className="min-h-screen font-sans selection:bg-[#20e0d0] selection:text-white text-[#1d1d1f] overflow-x-hidden">
 
         {viewState === 'home' && <Monogram className="text-black" fixed={true} />}
 
@@ -115,36 +128,38 @@ export default function App() {
           onShowContact={() => setShowContact(true)}
         />
 
-        {viewState === 'home' && (
-          <HomeView
-            activeSkill={activeSkill}
-            scrollY={scrollY}
-            setActiveProject={setActiveProject}
-            setActiveResearch={setActiveResearch}
-            onViewAllProjects={() => handleViewChange('all-projects', 'Project Archive')}
-            onViewAllResearch={() => handleViewChange('all-research', 'Research Archive')}
-            onContact={() => setShowContact(true)}
-            mousePos={mousePos}
-          />
-        )}
+        <Suspense fallback={null}>
+          {viewState === 'home' && (
+            <HomeView
+              activeSkill={activeSkill}
+              scrollY={scrollY}
+              setActiveProject={setActiveProject}
+              setActiveResearch={setActiveResearch}
+              onViewAllProjects={() => handleViewChange('all-projects', 'Project Archive')}
+              onViewAllResearch={() => handleViewChange('all-research', 'Research Archive')}
+              onContact={() => setShowContact(true)}
+              mousePos={mousePos}
+            />
+          )}
 
-        {viewState === 'all-projects' && (
-          <FullScreenArchive
-            title="All Projects"
-            projects={ALL_PROJECTS}
-            onClose={() => handleViewChange('home', 'Home')}
-            onProjectClick={setActiveProject}
-          />
-        )}
+          {viewState === 'all-projects' && (
+            <FullScreenArchive
+              title="All Projects"
+              projects={ALL_PROJECTS}
+              onClose={() => handleViewChange('home', 'Home')}
+              onProjectClick={setActiveProject}
+            />
+          )}
 
-        {viewState === 'all-research' && (
-          <FullScreenArchive
-            title="Research Archive"
-            projects={ALL_RESEARCH}
-            onClose={() => handleViewChange('home', 'Home')}
-            onProjectClick={setActiveResearch}
-          />
-        )}
+          {viewState === 'all-research' && (
+            <FullScreenArchive
+              title="Research Archive"
+              projects={ALL_RESEARCH}
+              onClose={() => handleViewChange('home', 'Home')}
+              onProjectClick={setActiveResearch}
+            />
+          )}
+        </Suspense>
 
         <ProjectDetailModal project={activeProject} onClose={() => setActiveProject(null)} />
         <ResearchDetailModal research={activeResearch} onClose={() => setActiveResearch(null)} />

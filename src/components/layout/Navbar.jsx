@@ -75,7 +75,7 @@ const Navbar = ({ isScrolled, viewState, onNavigate, onShowAbout, onShowContact 
             {/* Full-Screen Menu Overlay */}
             <div className={`fixed inset-0 z-[120] flex flex-col justify-end transition-all duration-500 ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                 <div className={`absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity duration-700 ${menuOpen ? 'opacity-100' : 'opacity-0'}`} onClick={() => setMenuOpen(false)} />
-                <div className={`relative w-full md:w-[30vw] ml-auto h-full bg-[#1c1c1e] text-white flex flex-col justify-center pl-28 pr-8 shadow-2xl transform transition-all duration-[800ms] cubic-bezier(0.32, 0.72, 0, 1) ${menuOpen ? 'translate-x-0 rounded-l-[2rem]' : 'translate-x-full rounded-l-[100%]'} overflow-y-auto`}>
+                <div className={`relative w-full md:w-[30vw] ml-auto h-full bg-[#1c1c1e] text-white flex flex-col justify-center pl-28 pr-8 shadow-2xl transform transition-all duration-[800ms] cubic-bezier(0.19, 1, 0.22, 1) will-change-[transform,border-radius] transform-gpu ${menuOpen ? 'translate-x-0 rounded-l-[2rem]' : 'translate-x-full rounded-l-[100%]'} overflow-y-auto`}>
                     <button onClick={() => setMenuOpen(false)} className="absolute top-10 right-10 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors touch-manipulation cursor-pointer">
                         <X size={24} />
                     </button>
@@ -89,7 +89,7 @@ const Navbar = ({ isScrolled, viewState, onNavigate, onShowAbout, onShowContact 
                                 <div key={item} className="overflow-hidden">
                                     <div
                                         onClick={() => handleMenuItemClick(item)}
-                                        className={`text-5xl md:text-6xl font-normal tracking-tight cursor-pointer text-white hover:text-neutral-400 transition-colors duration-300 transform ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                                        className={`text-5xl md:text-6xl font-normal tracking-tight cursor-pointer text-white hover:text-neutral-400 transition-all duration-500 cubic-bezier(0.19, 1, 0.22, 1) transform ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                                         style={{ transitionDelay: `${100 + i * 50}ms` }}
                                     >
                                         {item}

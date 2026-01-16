@@ -13,7 +13,7 @@ const ScrollRevealer = ({ children }) => {
     return (
         <div
             ref={ref}
-            className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+            className={`transition-[opacity,transform,filter] duration-1000 cubic-bezier(0.25, 0.46, 0.45, 0.94) will-change-[opacity,transform] transform-gpu ${isVisible ? 'opacity-100 translate-y-0 scale-100 blur-0' : 'opacity-0 translate-y-12 scale-95 blur-sm'}`}
         >
             {children}
         </div>

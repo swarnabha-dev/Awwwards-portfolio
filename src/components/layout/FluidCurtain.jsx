@@ -44,9 +44,10 @@ const FluidCurtain = ({ isVisible, label, onCovered, onRevealed }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[200] bg-[#1c1c1e] flex items-center justify-center text-white transition-all duration-[600ms] cubic-bezier(0.76, 0, 0.24, 1) ${transformClass} ${shapeClass} pointer-events-auto`}
+      className={`fixed inset-0 z-[200] flex items-center justify-center text-white transition-transform duration-800 cubic-bezier(0.19, 1, 0.22, 1) ${transformClass} pointer-events-auto will-change-transform backface-hidden transform-gpu`}
     >
-      <h2 className={`text-4xl md:text-7xl font-bold tracking-tighter uppercase transition-all duration-300 delay-100 transform ${stage === 'holding' || stage === 'exiting' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`absolute inset-0 bg-[#1c1c1e] transition-all duration-800 cubic-bezier(0.19, 1, 0.22, 1) ${shapeClass}`} />
+      <h2 className={`relative z-10 text-4xl md:text-7xl font-bold tracking-tighter uppercase transition-all duration-500 delay-100 transform ${stage === 'holding' || stage === 'exiting' ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 blur-sm'}`}>
         {label}
       </h2>
     </div>

@@ -93,13 +93,13 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
             {/* Floating Preview Image */}
             <div
                 ref={previewContainerRef}
-                className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block will-change-transform"
+                className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block will-change-transform transform-gpu"
                 style={{
                     opacity: activePreview ? 1 : 0,
-                    transition: 'opacity 0.5s ease-out'
+                    transition: 'opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1)'
                 }}
             >
-                <div className={`relative -translate-x-1/2 -translate-y-1/2 w-[320px] h-[460px] rounded-lg overflow-hidden shadow-2xl transition-all duration-700 ease-[0.23,1,0.32,1] ${activePreview ? 'scale-100' : 'scale-50'}`}>
+                <div className={`relative -translate-x-1/2 -translate-y-1/2 w-[320px] h-[460px] rounded-lg overflow-hidden shadow-2xl transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) ${activePreview ? 'scale-100' : 'scale-50'}`}>
                     {PROJECTS.map((p, index) => {
                         const isActive = activePreview === p.id;
                         const isBefore = index < activeIndex;
@@ -112,7 +112,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
                                 key={p.id}
                                 src={p.image}
                                 alt=""
-                                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-[0.23,1,0.32,1] ${translateClass} ${isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-110 z-0'}`}
+                                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) will-change-[transform,opacity] transform-gpu ${translateClass} ${isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-110 z-0'}`}
                             />
                         );
                     })}
@@ -143,7 +143,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
                         <React.Fragment key={project.id}>
                             <div className="w-full h-[1px] bg-neutral-300" />
                             <div
-                                className="group py-16 md:py-24 flex flex-col md:flex-row justify-between items-start md:items-center transition-all duration-500 hover:px-0 md:hover:px-12 cursor-pointer relative"
+                                className="group py-16 md:py-24 flex flex-col md:flex-row justify-between items-start md:items-center transition-all duration-500 cubic-bezier(0.19, 1, 0.22, 1) hover:px-0 md:hover:px-12 cursor-pointer relative"
                                 data-work-id={project.id}
                                 onClick={() => setActiveProject(project)}
                             >
