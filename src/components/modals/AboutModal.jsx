@@ -1,6 +1,6 @@
 import React from 'react';
 import LiquidPane from '../layout/LiquidPane';
-import { NAME, PROFILE_IMG } from '../../data/constants';
+import { NAME, PROFILE_IMG, RESUME_URL } from '../../data/constants';
 import UnifiedImage from '../ui/UnifiedImage';
 
 const AboutModal = ({ isOpen, onClose }) => {
@@ -19,10 +19,15 @@ const AboutModal = ({ isOpen, onClose }) => {
                     <p className="text-xl text-neutral-600 leading-relaxed">
                         I'm {NAME}, a multidisciplinary engineer situated at the intersection of Data Science and Product Engineering.
                     </p>
-                    <button className="group relative overflow-hidden bg-black text-white px-8 py-4 rounded-full font-bold mt-8">
+                    <a
+                        href={RESUME_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative inline-flex items-center justify-center overflow-hidden bg-black text-white px-8 py-4 rounded-full font-bold mt-8 cursor-pointer touch-manipulation"
+                    >
                         <span className="relative z-10 group-hover:text-white transition-colors duration-500">View Resume</span>
                         <div className="absolute inset-0 bg-[#20e0d0] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out" />
-                    </button>
+                    </a>
                 </div>
             </div>
         </LiquidPane>

@@ -5,6 +5,7 @@ export const FAVICON = "src/assets/Slogo_color.png";
 // Personal Information
 export const NAME = "SWARNABHA HALDER";
 export const EMAIL = "swarnabha@swarnabha.tech";
+export const RESUME_URL = "/SWARNABHA%20HALDER_CV.pdf"; // URL encoded path to file in public folder
 
 // Social Links
 export const SOCIAL_LINKS = {

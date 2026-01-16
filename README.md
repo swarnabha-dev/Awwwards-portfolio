@@ -1,4 +1,4 @@
-# Portfolio 2025
+# Portfolio 2026
 
 A high-performance, animated portfolio website built with React 19, Vite, and Tailwind CSS. Featuring 3D interactive elements, smooth scroll animations, and a modular architecture.
 
