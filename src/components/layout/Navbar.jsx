@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, ArrowRight } from 'lucide-react';
+import MagneticButton from '../ui/MagneticButton';
 
 const Navbar = ({ isScrolled, viewState, onNavigate, onShowAbout, onShowContact }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -34,42 +35,49 @@ const Navbar = ({ isScrolled, viewState, onNavigate, onShowAbout, onShowContact 
             <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out py-8 px-12 flex justify-end items-center pointer-events-none ${isScrolled ? 'hidden md:-translate-y-full md:opacity-0' : 'hidden md:flex md:translate-y-0 md:opacity-100'}`}>
                 <div className="flex gap-10 pointer-events-auto">
                     {['Works', 'Research', 'Contact'].map(item => (
-                        <button
-                            key={item}
-                            onClick={() => handleNavClick(item)}
-                            className="text-xs font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#20e0d0] active:text-[#20e0d0] transition-colors pointer-events-auto cursor-pointer"
-                        >
-                            {item}
-                        </button>
+                        <MagneticButton key={item}>
+                            <button
+                                onClick={() => handleNavClick(item)}
+                                className="text-xs font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#20e0d0] active:text-[#20e0d0] transition-colors pointer-events-auto cursor-pointer"
+                            >
+                                {item}
+                            </button>
+                        </MagneticButton>
                     ))}
                 </div>
             </nav>
 
             {/* Hamburger Menu Button */}
-            <button
-                onClick={() => setMenuOpen(true)}
-                className={`fixed top-8 right-8 z-100 group flex flex-col gap-1.5 p-4 rounded-full bg-[#1c1c1e] text-white shadow-2xl transition-all duration-500 ease-[0.34,1.56,0.64,1] transform hover:scale-110 overflow-hidden cursor-pointer pointer-events-auto touch-manipulation ${isScrolled ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-0 opacity-100 scale-100 md:-translate-y-20 md:opacity-0 md:scale-90'}`}
-            >
-                <div className="absolute inset-0 bg-[#20e0d0] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.76,0,0.24,1]" />
-                <div className="relative z-10 flex flex-col gap-1.5">
-                    <div className="w-5 h-0.5 bg-white rounded-full group-hover:w-6 transition-all duration-300" />
-                    <div className="w-5 h-0.5 bg-white rounded-full opacity-70 group-hover:opacity-100 transition-all duration-300" />
-                    <div className="w-5 h-0.5 bg-white rounded-full opacity-50 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" />
-                </div>
-            </button>
+            <MagneticButton className={`fixed top-8 right-8 z-100 ${isScrolled ? 'pointer-events-auto opacity-100 scale-100' : 'md:pointer-events-none md:opacity-0 md:scale-90 opacity-100 pointer-events-auto scale-100'} transition-all duration-500`}>
+                <button
+                    onClick={() => setMenuOpen(true)}
+                    className="group relative flex flex-col gap-1.5 p-4 rounded-full bg-[#1c1c1e] text-white shadow-2xl overflow-hidden cursor-pointer touch-manipulation transform hover:scale-110 transition-transform duration-500 ease-[0.34,1.56,0.64,1]"
+                >
+                    <div className="absolute inset-0 bg-[#20e0d0] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.76,0,0.24,1]" />
+                    <div className="relative z-10 flex flex-col gap-1.5">
+                        <div className="w-5 h-0.5 bg-white rounded-full group-hover:w-6 transition-all duration-300" />
+                        <div className="w-5 h-0.5 bg-white rounded-full opacity-70 group-hover:opacity-100 transition-all duration-300" />
+                        <div className="w-5 h-0.5 bg-white rounded-full opacity-50 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" />
+                    </div>
+                </button>
+            </MagneticButton>
 
             {/* Side "About Me" Button */}
             {viewState === 'home' && (
-                <button
-                    onClick={onShowAbout}
-                    className={`fixed top-1/2 right-0 z-100 transform -translate-y-1/2 translate-x-2 bg-[#1c1c1e] text-white py-12 pl-3 pr-2 rounded-l-2xl shadow-xl flex items-center justify-center group cursor-pointer overflow-hidden transition-all duration-500 cubic-bezier(0.25, 1, 0.5, 1) w-12 hover:w-64 hover:translate-x-0 pointer-events-auto touch-manipulation ${isScrolled ? 'opacity-0 pointer-events-none translate-x-full' : 'opacity-100'}`}
-                >
-                    <span className="writing-vertical-rl text-[10px] font-bold uppercase tracking-[0.2em] rotate-180 group-hover:opacity-0 transition-opacity duration-300 absolute right-3">About Me</span>
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex items-center gap-4 whitespace-nowrap pl-4">
-                        <span className="text-xl font-bold tracking-wider">Read Biography</span>
-                        <ArrowRight size={20} />
-                    </div>
-                </button>
+                <div className={`fixed top-1/2 right-0 z-100 transform -translate-y-1/2 ${isScrolled ? 'translate-x-full opacity-0 pointer-events-none' : 'translate-x-0 opacity-100'} transition-all duration-500`}>
+                    <MagneticButton strength={0.2} className="pointer-events-auto">
+                        <button
+                            onClick={onShowAbout}
+                            className="relative bg-[#1c1c1e] text-white py-12 pl-3 pr-2 rounded-l-2xl shadow-xl flex items-center justify-center group cursor-pointer overflow-hidden transition-all duration-500 cubic-bezier(0.25, 1, 0.5, 1) w-12 hover:w-64 hover:translate-x-0 touch-manipulation transform translate-x-2"
+                        >
+                            <span className="writing-vertical-rl text-[10px] font-bold uppercase tracking-[0.2em] rotate-180 group-hover:opacity-0 transition-opacity duration-300 absolute right-3">About Me</span>
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex items-center gap-4 whitespace-nowrap pl-4">
+                                <span className="text-xl font-bold tracking-wider">Read Biography</span>
+                                <ArrowRight size={20} />
+                            </div>
+                        </button>
+                    </MagneticButton>
+                </div>
             )}
 
             {/* Full-Screen Menu Overlay */}

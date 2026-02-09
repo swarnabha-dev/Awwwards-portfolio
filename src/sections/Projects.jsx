@@ -99,7 +99,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
                     transition: 'opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1)'
                 }}
             >
-                <div className={`relative -translate-x-1/2 -translate-y-1/2 w-[320px] h-[460px] rounded-lg overflow-hidden shadow-2xl transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) ${activePreview ? 'scale-100' : 'scale-50'}`}>
+                <div className={`relative -translate-x-1/2 -translate-y-1/2 w-[320px] h-[460px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 cubic-bezier(0.19, 1, 0.22, 1) ${activePreview ? 'scale-100' : 'scale-50'}`}>
                     {PROJECTS.map((p, index) => {
                         const isActive = activePreview === p.id;
                         const isBefore = index < activeIndex;
@@ -128,7 +128,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
                     transition: 'opacity 0.3s ease'
                 }}
             >
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#20e0d0]/90 backdrop-blur-xl flex items-center justify-center text-white text-[10px] font-bold uppercase tracking-widest animate-blob shadow-2xl border border-white/20">
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#20e0d0]/90 backdrop-blur-xl flex items-center justify-center text-white text-[10px] font-bold uppercase tracking-widest animate-blob shadow-2xl border border-white/20 rounded-full">
                     View
                 </div>
             </div>

@@ -48,11 +48,11 @@ const FullScreenArchive = ({ title, projects, onClose, onProjectClick }) => {
                             style={{ animationDelay: `${400 + i * 100}ms` }}
                             onClick={() => onProjectClick(proj)}
                         >
-                            <div className="overflow-hidden rounded-2xl relative aspect-video shadow-sm group-hover:shadow-xl transition-all duration-500 cubic-bezier(0.25, 0.46, 0.45, 0.94)">
+                            <div className="overflow-hidden rounded-3xl relative aspect-video shadow-lg group-hover:shadow-2xl transition-all duration-500 cubic-bezier(0.25, 0.46, 0.45, 0.94)">
                                 <UnifiedImage
                                     src={proj.image}
                                     alt={proj.title}
-                                    className="w-full h-full object-cover transform transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) will-change-transform transform-gpu group-hover:scale-105"
+                                    className="w-full h-full object-cover transform transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) will-change-transform transform-gpu group-hover:scale-110"
                                     loading="eager" // Load immediately behind curtain
                                     decoding="async" // Decode off main thread
                                 />

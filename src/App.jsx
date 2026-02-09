@@ -6,6 +6,8 @@ import Monogram from './components/ui/Monogram';
 import FluidCurtain from './components/layout/FluidCurtain';
 import Navbar from './components/layout/Navbar';
 
+import CustomCursor from './components/ui/CustomCursor';
+
 // Import modals
 import ProjectDetailModal from './components/modals/ProjectDetailModal';
 import ResearchDetailModal from './components/modals/ResearchDetailModal';
@@ -100,14 +102,8 @@ export default function App() {
 
   return (
     <>
+      <CustomCursor />
       {loading && <Preloader onComplete={handleLoadComplete} />}
-
-      <FluidCurtain
-        isVisible={isTransitioning}
-        label={curtainLabel}
-        onCovered={onCurtainCovered}
-        onRevealed={onCurtainRevealed}
-      />
 
       <FluidCurtain
         isVisible={isTransitioning}

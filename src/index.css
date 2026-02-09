@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+@media (hover: hover) and (pointer: fine) {
+  html {
+    cursor: none;
+    /* Hide default cursor only on devices with fine pointers (mouse) */
+  }
+
+  a,
+  button,
+  .cursor-scale {
+    cursor: none;
+  }
 }
