@@ -24,7 +24,7 @@ const Monogram = ({ className, fixed = true }) => {
                 </defs>
                 <rect width="100%" height="100%" fill="currentColor" clipPath={`url(#${clipId})`} />
                 <g clipPath={`url(#${clipId})`}>
-                    <rect width="100%" height="100%" fill="#20e0d0" className={`transform transition-transform duration-700 ease-out ${hover ? 'translate-y-0' : 'translate-y-[100%]'}`} />
+                    <rect width="100%" height="100%" fill="#20e0d0" className={`transform transition-transform duration-700 ease-out ${hover ? 'translate-y-0' : 'translate-y-full'}`} />
                 </g>
             </svg>
         </div>

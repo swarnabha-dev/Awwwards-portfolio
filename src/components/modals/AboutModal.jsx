@@ -8,7 +8,7 @@ const AboutModal = ({ isOpen, onClose }) => {
         <LiquidPane isOpen={isOpen} onClose={onClose} title="About Me" zIndex={110}>
             <div className="max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row gap-20 items-center">
                 <div className="w-full md:w-1/2">
-                    <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-[-3deg] hover:rotate-0 transition-transform duration-700">
+                    <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-2xl -rotate-3 hover:rotate-0 transition-transform duration-700">
                         <UnifiedImage src={PROFILE_IMG} alt="About" className="w-full h-full object-cover bg-[#E8E6E3]" />
                     </div>
                 </div>

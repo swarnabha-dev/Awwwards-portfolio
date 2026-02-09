@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Import modular components
 import Preloader from './components/ui/Preloader';
@@ -12,9 +12,9 @@ import ResearchDetailModal from './components/modals/ResearchDetailModal';
 import AboutModal from './components/modals/AboutModal';
 import ContactModal from './components/modals/ContactModal';
 
-// Lazy Load Views
-const HomeView = lazy(() => import('./views/HomeView'));
-const FullScreenArchive = lazy(() => import('./views/FullScreenArchive'));
+// Import views (Eager load for smooth transitions)
+import HomeView from './views/HomeView';
+import FullScreenArchive from './views/FullScreenArchive';
 
 // Import custom hooks
 import useScroll from './hooks/useScroll';
@@ -128,38 +128,36 @@ export default function App() {
           onShowContact={() => setShowContact(true)}
         />
 
-        <Suspense fallback={null}>
-          {viewState === 'home' && (
-            <HomeView
-              activeSkill={activeSkill}
-              scrollY={scrollY}
-              setActiveProject={setActiveProject}
-              setActiveResearch={setActiveResearch}
-              onViewAllProjects={() => handleViewChange('all-projects', 'Project Archive')}
-              onViewAllResearch={() => handleViewChange('all-research', 'Research Archive')}
-              onContact={() => setShowContact(true)}
-              mousePos={mousePos}
-            />
-          )}
+        {viewState === 'home' && (
+          <HomeView
+            activeSkill={activeSkill}
+            scrollY={scrollY}
+            setActiveProject={setActiveProject}
+            setActiveResearch={setActiveResearch}
+            onViewAllProjects={() => handleViewChange('all-projects', 'Project Archive')}
+            onViewAllResearch={() => handleViewChange('all-research', 'Research Archive')}
+            onContact={() => setShowContact(true)}
+            mousePos={mousePos}
+          />
+        )}
 
-          {viewState === 'all-projects' && (
-            <FullScreenArchive
-              title="All Projects"
-              projects={ALL_PROJECTS}
-              onClose={() => handleViewChange('home', 'Home')}
-              onProjectClick={setActiveProject}
-            />
-          )}
+        {viewState === 'all-projects' && (
+          <FullScreenArchive
+            title="All Projects"
+            projects={ALL_PROJECTS}
+            onClose={() => handleViewChange('home', 'Home')}
+            onProjectClick={setActiveProject}
+          />
+        )}
 
-          {viewState === 'all-research' && (
-            <FullScreenArchive
-              title="Research Archive"
-              projects={ALL_RESEARCH}
-              onClose={() => handleViewChange('home', 'Home')}
-              onProjectClick={setActiveResearch}
-            />
-          )}
-        </Suspense>
+        {viewState === 'all-research' && (
+          <FullScreenArchive
+            title="Research Archive"
+            projects={ALL_RESEARCH}
+            onClose={() => handleViewChange('home', 'Home')}
+            onProjectClick={setActiveResearch}
+          />
+        )}
 
         <ProjectDetailModal project={activeProject} onClose={() => setActiveProject(null)} />
         <ResearchDetailModal research={activeResearch} onClose={() => setActiveResearch(null)} />

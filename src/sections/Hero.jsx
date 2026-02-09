@@ -7,7 +7,7 @@ import UnifiedImage from '../components/ui/UnifiedImage';
 
 const Hero = ({ scrollY, activeSkill }) => {
     return (
-        <div className="fixed top-0 left-0 w-full h-[100dvh] flex flex-col overflow-hidden bg-[#E8E6E3] z-0">
+        <div className="fixed top-0 left-0 w-full h-dvh flex flex-col overflow-hidden bg-[#E8E6E3] z-0">
             {/* Profile Image - adjusted for mobile to cover max space */}
             <div className="absolute top-24 bottom-0 w-full md:top-auto md:bottom-0 md:h-[85vh] flex items-end justify-center z-10 pointer-events-none">
                 <UnifiedImage

@@ -16,7 +16,7 @@ const ResearchDetailModal = ({ research, onClose }) => {
                     <UnifiedImage
                         src={research.image}
                         alt="Research"
-                        className="w-full aspect-[21/9] object-cover rounded-2xl mb-12 shadow-lg"
+                        className="w-full aspect-21/9 object-cover rounded-2xl mb-12 shadow-lg"
                     />
                     <div className="prose prose-lg prose-neutral mx-auto">
                         <p className="font-medium text-xl leading-relaxed mb-8">{research.abstract}</p>

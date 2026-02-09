@@ -17,7 +17,7 @@ const FooterSection = ({ onContact, simple = false, footerRef, style }) => {
                 <p className="text-neutral-500 text-sm uppercase tracking-widest mb-12">Next Steps</p>
                 <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-16">
                     LET'S BUILD <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-500 to-white">THE FUTURE.</span>
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-neutral-500 to-white">THE FUTURE.</span>
                 </h2>
 
                 <button

@@ -41,3 +41,9 @@ coverage
 # Temporary Files
 tmp/
 temp/
+
+# Agent Skills
+.agent
+stitch_info.json
+
+

@@ -7,7 +7,7 @@ const About = ({ onViewResume }) => {
         <section id="about" className="bg-white py-32 px-6 md:px-20">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-20 items-center">
                 <div className="w-full md:w-1/2">
-                    <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-[-3deg] hover:rotate-0 transition-transform duration-700">
+                    <div className="aspect-4/5 rounded-3xl overflow-hidden shadow-2xl -rotate-3 hover:rotate-0 transition-transform duration-700">
                         <UnifiedImage
                             src={PROFILE_IMG}
                             alt={`About ${NAME}`}

@@ -37,7 +37,8 @@ const UnifiedImage = React.memo(({ src, alt, className, style, ...props }) => {
             alt={alt || ''}
             className={className}
             style={style}
-            loading="lazy"
+            loading={props.loading || "lazy"}
+            decoding={props.decoding || "async"}
             {...props}
         />
     );

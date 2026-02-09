@@ -122,7 +122,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
             {/* View Bubble */}
             <div
                 ref={bubbleContainerRef}
-                className="fixed top-0 left-0 pointer-events-none z-[51] hidden md:block will-change-transform"
+                className="fixed top-0 left-0 pointer-events-none z-51 hidden md:block will-change-transform"
                 style={{
                     opacity: activePreview ? 1 : 0,
                     transition: 'opacity 0.3s ease'
@@ -141,7 +141,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
                 <div ref={workContainerRef} className="flex flex-col">
                     {PROJECTS.map((project) => (
                         <React.Fragment key={project.id}>
-                            <div className="w-full h-[1px] bg-neutral-300" />
+                            <div className="w-full h-px bg-neutral-300" />
                             <div
                                 className="group py-16 md:py-24 flex flex-col md:flex-row justify-between items-start md:items-center transition-all duration-500 cubic-bezier(0.19, 1, 0.22, 1) hover:px-0 md:hover:px-12 cursor-pointer relative"
                                 data-work-id={project.id}
@@ -156,7 +156,7 @@ const Projects = ({ mousePos, setActiveProject, onViewAllProjects }) => {
                             </div>
                         </React.Fragment>
                     ))}
-                    <div className="w-full h-[1px] bg-neutral-300" />
+                    <div className="w-full h-px bg-neutral-300" />
                 </div>
                 <div className="mt-24 text-center">
                     <button

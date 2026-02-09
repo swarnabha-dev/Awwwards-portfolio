@@ -28,13 +28,13 @@ const MacbookMockup = ({ src }) => {
             >
                 <div className="relative bg-[#8E8E93] rounded-t-lg md:rounded-t-2xl p-[3%] shadow-2xl border border-[#A1A1A6] border-b-0">
                     <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1 h-1 md:w-1.5 md:h-1.5 bg-[#48484A] rounded-full z-20 shadow-inner"></div>
-                    <div className="bg-black overflow-hidden rounded-sm relative aspect-[16/10] border border-neutral-900">
+                    <div className="bg-black overflow-hidden rounded-sm relative aspect-16/10 border border-neutral-900">
                         <UnifiedImage src={src} className="w-full h-full object-cover" alt="Screen" />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-transparent pointer-events-none z-10" />
+                        <div className="absolute inset-0 bg-linear-to-tr from-white/5 via-transparent to-transparent pointer-events-none z-10" />
                     </div>
                 </div>
                 <div className="relative bg-[#48484A] h-3 md:h-4 w-full flex justify-center border-x border-[#48484A]">
-                    <div className="w-[80%] h-full bg-gradient-to-b from-[#8E8E93] to-[#48484A]" />
+                    <div className="w-[80%] h-full bg-linear-to-b from-[#8E8E93] to-[#48484A]" />
                 </div>
                 <div className="relative bg-[#B4B4B4] h-[8px] md:h-[10px] w-full rounded-b-lg md:rounded-b-xl shadow-2xl border-t border-[#A1A1A6] flex justify-center overflow-hidden">
                     <div className="absolute top-0 w-16 md:w-20 h-1 bg-[#8E8E93] rounded-b-md"></div>

@@ -18,7 +18,7 @@ const FullScreenArchive = ({ title, projects, onClose, onProjectClick }) => {
     }, []);
 
     return (
-        <div id="archive-container" className="fixed inset-0 z-[80] bg-white overflow-y-auto custom-scrollbar pointer-events-auto">
+        <div id="archive-container" className="fixed inset-0 z-80 bg-white overflow-y-auto custom-scrollbar pointer-events-auto">
             {/* Scrollable Header Section */}
             <div className="px-6 md:px-12 pt-8 pb-6">
                 {/* Logo - Hidden on mobile when scrolled */}
@@ -45,7 +45,7 @@ const FullScreenArchive = ({ title, projects, onClose, onProjectClick }) => {
                         <div
                             key={proj.id}
                             className="group cursor-pointer flex flex-col gap-4 touch-manipulation pointer-events-auto opacity-0 animate-fade-in-up fill-mode-forwards"
-                            style={{ animationDelay: `${i * 100}ms` }}
+                            style={{ animationDelay: `${400 + i * 100}ms` }}
                             onClick={() => onProjectClick(proj)}
                         >
                             <div className="overflow-hidden rounded-2xl relative aspect-video shadow-sm group-hover:shadow-xl transition-all duration-500 cubic-bezier(0.25, 0.46, 0.45, 0.94)">
@@ -53,6 +53,8 @@ const FullScreenArchive = ({ title, projects, onClose, onProjectClick }) => {
                                     src={proj.image}
                                     alt={proj.title}
                                     className="w-full h-full object-cover transform transition-transform duration-700 cubic-bezier(0.19, 1, 0.22, 1) will-change-transform transform-gpu group-hover:scale-105"
+                                    loading="eager" // Load immediately behind curtain
+                                    decoding="async" // Decode off main thread
                                 />
                                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                             </div>
