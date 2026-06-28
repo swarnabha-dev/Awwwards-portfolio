@@ -42,6 +42,7 @@ export default function App() {
   const [activeResearch, setActiveResearch] = useState(null);
   const [showAbout, setShowAbout] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [showPortfolioAlert, setShowPortfolioAlert] = useState(false);
 
   const handleViewChange = (target, label) => {
     setNextView(target);
@@ -97,6 +98,19 @@ export default function App() {
       import('./views/FullScreenArchive');
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    const hasSeenPortfolioAlert = window.localStorage.getItem('hasSeenPortfolioAlert');
+    if (!hasSeenPortfolioAlert) {
+      setShowPortfolioAlert(true);
+    }
+  }, []);
+
+  const handleClosePortfolioAlert = useCallback(() => {
+    setShowPortfolioAlert(false);
+    window.localStorage.setItem('hasSeenPortfolioAlert', 'true');
+  }, []);
+
   const activeSkill = useTypewriter(SKILLS);
   const isScrolled = scrollY > 50;
 
@@ -113,6 +127,34 @@ export default function App() {
       />
 
       <div className="min-h-screen font-sans selection:bg-[#20e0d0] selection:text-white text-[#1d1d1f] overflow-x-hidden">
+
+        {showPortfolioAlert && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+            <div className="w-full max-w-md rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl">
+              <div className="flex justify-end">
+                <button
+                  onClick={handleClosePortfolioAlert}
+                  className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+                  aria-label="Close portfolio alert"
+                >
+                  ✕
+                </button>
+              </div>
+              <h2 className="mt-2 text-2xl font-semibold text-slate-900">Checkout my new portfolio</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                A fresh take on my work is live. Open it to explore the latest projects and updates.
+              </p>
+              <a
+                href="https://swarnabha.tech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-700"
+              >
+                Visit Portfolio
+              </a>
+            </div>
+          </div>
+        )}
 
         {viewState === 'home' && <Monogram className="text-black" fixed={true} />}
 
